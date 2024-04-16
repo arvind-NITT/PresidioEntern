@@ -27,7 +27,7 @@ namespace RequestTrackerApp
                 Console.WriteLine("3.Update Salary");
                 Console.WriteLine("0. Exit");
             }
-        void EmployeeInteraction()
+           void EmployeeInteraction()
             {
                 int choice = 0;
                 do
@@ -64,32 +64,44 @@ namespace RequestTrackerApp
             }
             void AddEmployee()
             {
-                if (employees[employees.Length - 1] != null)
+            int count = 0;
+                for (int i = 0; i < employees.Length; i++)
                 {
-                    Console.WriteLine("Sorry we have reached the maximum number of employees");
-                    return;
+                    if (employees[i] != null)
+                    {
+                    count++;
+                    }
                 }
+                if (employees.Length == count)
+                    {
+                        Console.WriteLine("Sorry we have reached the maximum number of employees");
+                        return;
+                    }
                 for (int i = 0; i < employees.Length; i++)
                 {
                     if (employees[i] == null)
                     {
                         employees[i] = CreateEmployee(i);
+                    break;
                     }
                 }
 
             }
             void PrintAllEmployees()
             {
-                if (employees[0] == null)
-                {
-                    Console.WriteLine("No Employees available");
-                    return;
-                }
+            int count = 0;
                 for (int i = 0; i < employees.Length; i++)
                 {
                     if (employees[i] != null)
                         PrintEmployee(employees[i]);
+                    else count++;
                 }
+                if(count == employees.Length)
+            {
+                    Console.WriteLine("No Employees available");
+                    return;
+                
+            }
             }
             Employee CreateEmployee(int id)
             {
