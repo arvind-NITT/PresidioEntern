@@ -11,7 +11,7 @@ namespace Day7BLLibrary
         string msg;
         public EmployeeNotFoundException()
         {
-            msg = "Employee does not exists ";
+            msg = "Employee Not Found ";
         }
         public override string Message => msg;
     }
