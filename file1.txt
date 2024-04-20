@@ -13,7 +13,7 @@ Leave Details for CTS is
 1 day of Casual Leave per month
 12 days of Sick Leave per year
 10 days of Privilege Leave per year
-
+   
 Gratuity amount: if the no of service year completed in the same company is > 5 , 1month basic salary will be deposited in gratuity amount
 if >10 years service , 2*basic salary=gratuity amount
 if >20 years service , 3* basic salary=gratuity amount
