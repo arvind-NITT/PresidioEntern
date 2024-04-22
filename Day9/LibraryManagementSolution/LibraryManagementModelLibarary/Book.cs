@@ -39,10 +39,11 @@ namespace LibraryManagementModelLibrary
 
         public override string ToString()
         {
-            return "\n Book Id : " + Id
+            return "  --------------------------- \n"
                 + "\n Book Name " + Title
                 + "\n Description : " + Description
-            + "\n Author : " + Author;
+            + "\n Author : " + Author
+            + "\n ------------------------------";
         }
 
     }

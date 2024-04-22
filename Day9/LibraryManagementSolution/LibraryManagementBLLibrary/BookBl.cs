@@ -18,7 +18,7 @@ namespace LibraryManagementBLLibrary
         public int AddBook(Book Book)
         {
             var result = _BookRepository.Add(Book);
-            Console.WriteLine(result);
+            //Console.WriteLine(result);
             if (result != null)
             {
                 return result.Id;
@@ -81,16 +81,20 @@ namespace LibraryManagementBLLibrary
             throw new BookNotFoundException();
         }
 
+        //public Book UpdateBookName(string BookOldName, string BookNewName)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Book UpdateBookName(string BookOldName, string BookNewName)
+        public Book UpdateBookTitle(string BookOldName, string BookNewName)
         {
             List<Book> Books = _BookRepository.GetAll();
-            foreach (Book Book in Books)
+            foreach (Book book in Books)
             {
-                if (Book.Title == BookOldName)
+                if (book.Title == BookOldName)
                 {
-                    Book.Title = BookNewName;
-                    return Book;
+                    book.Title = BookNewName;
+                    return book;
                 }
             }
             throw new BookNotFoundException();

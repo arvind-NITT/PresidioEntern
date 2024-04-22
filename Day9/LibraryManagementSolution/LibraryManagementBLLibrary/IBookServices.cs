@@ -13,7 +13,7 @@ namespace LibraryManagementBLLibrary
         Book GetBookById(int id);
         List<Book> GetAllBooks();
         List<Book> GetBooksByAuthorName(string type);
-        Book UpdateBookName(string BookOldName, string BookNewName);
+        Book UpdateBookTitle(string BookOldName, string BookNewName);
         string GetBookTitle(int id);
         Book DeleteBookById(int id);
 
