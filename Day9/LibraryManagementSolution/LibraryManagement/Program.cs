@@ -13,6 +13,7 @@ namespace LibraryManagement
             Console.WriteLine("4. Delete Book by ID");
             Console.WriteLine("5. Search Books by Author Name");
             Console.WriteLine("6. Update Book Title");
+            Console.WriteLine("7. Get Book Title By Id");
             Console.WriteLine("0. Exit");
         }
         void Library()
@@ -45,6 +46,9 @@ namespace LibraryManagement
                         break;
                     case 6:
                         UpdateBooktitle();
+                        break;
+                    case 7:
+                        GetBookTitle();
                         break;
                     default:
                         Console.WriteLine("Invalid choice. Try again");
@@ -151,6 +155,22 @@ namespace LibraryManagement
                 {
                     Console.WriteLine(book);
                 }
+            }
+            catch (BookNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        void GetBookTitle()
+        {
+            try
+            {
+                Console.WriteLine("Enter the ID of the book:");
+                int bookId = Convert.ToInt32(Console.ReadLine());
+
+                string bookTitle = BookBL.GetBookTitle(bookId);
+
+                Console.WriteLine("The title of the book with ID " + bookId + " is: " + bookTitle);
             }
             catch (BookNotFoundException ex)
             {
