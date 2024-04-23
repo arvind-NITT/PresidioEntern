@@ -28,8 +28,8 @@ namespace Day7DALLibrary
             {
                 return null;
             }
-            int id= GenerateId();
-            _departments.Add(id, item);
+            item.Id = GenerateId();
+            _departments.Add(item.Id, item);
             return item;
         }
 

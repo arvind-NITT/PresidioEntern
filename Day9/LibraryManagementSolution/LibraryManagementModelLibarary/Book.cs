@@ -15,7 +15,6 @@ namespace LibraryManagementModelLibrary
             Id = 0;
             Title = string.Empty;
             Description = string.Empty;
-
             Author = string.Empty;
         }
         public Book(int id, string title, string description, string author)
@@ -40,7 +39,7 @@ namespace LibraryManagementModelLibrary
         public override string ToString()
         {
             return " --------------------------- \n"
-                + "\n Book Name " + Title
+                + "\n Book Title : " + Title
                 + "\n Description : " + Description
                 + "\n Author : " + Author
                 + "\n ------------------------------ \n";

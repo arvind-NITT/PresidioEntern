@@ -3,12 +3,12 @@ using LibraryManagementBLLibrary;
 namespace LibraryManagement
 {
     public class Program
-    {
+    { 
          BookBl BookBL = new();
         void PrintMenu()
         {
             Console.WriteLine("1. Add Book");
-            Console.WriteLine("2. Print Book");
+            Console.WriteLine("2. Print All Book");
             Console.WriteLine("3. Search Book by ID");
             Console.WriteLine("4. Delete Book by ID");
             Console.WriteLine("5. Search Books by Author Name");
@@ -61,11 +61,11 @@ namespace LibraryManagement
 
             try
             {
-                Console.WriteLine("Pleae enter the Book Title");
+                Console.WriteLine("Please enter the Book Title");
                 string title = Console.ReadLine();
-                Console.WriteLine("Pleae enter the Author name");
+                Console.WriteLine("Please enter the Author name");
                 string author = Console.ReadLine();
-                Console.WriteLine("Pleae enter the Book Description");
+                Console.WriteLine("Please enter the Book Description");
                 string description = Console.ReadLine();
                 Book Book = new Book() { Title = title, Author = author , Description = description };
                 int id = BookBL.AddBook(Book);
@@ -76,7 +76,6 @@ namespace LibraryManagement
                 Console.WriteLine(ddne.Message);
             }
         }
-
         void DeleteBook()
         {
             //BookBl BookBL = new BookBl();
@@ -98,7 +97,6 @@ namespace LibraryManagement
 
 
         }
-
         void PrintBooks()
         {
 
@@ -211,10 +209,7 @@ namespace LibraryManagement
         static void Main(string[] args)
         {
             Program program = new Program(); // Create a single instance of Program
-
             program.Library();
-            //program.PrintBooks(); // Print all books
-            //program.DeleteBook();
         }
 
     }
