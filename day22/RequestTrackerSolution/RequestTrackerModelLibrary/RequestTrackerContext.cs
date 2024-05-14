@@ -11,7 +11,7 @@ namespace RequestTrackerModelLibrary
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-QL1TE6V\SQLEXPRESS;Integrated Security=true;Initial Catalog=dbEmployeeRequestTrackerfinal;");
+            optionsBuilder.UseSqlServer(@"Data Source=1D66JX3\\ARVINDPRESIDIO;Integrated Security=true;Initial Catalog=dbEmployeeRequestTrackerfinal;");
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Request> Requests { get; set; }
