@@ -17,6 +17,9 @@ namespace MainRequestTrackerAPI.Controllers
             _employeeService = employeeService;
         }
         [HttpGet]
+        [ProducesResponseType(typeof(IList<Employee>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ErrorModel))]
         public async Task<ActionResult<IList<Employee>>> Get()
         {
             try
@@ -26,7 +29,7 @@ namespace MainRequestTrackerAPI.Controllers
             }
             catch (NoEmployeesFoundException nefe)
             {
-                return NotFound(nefe.Message);
+                return NotFound(new ErrorModel(404, nefe.Message));
             }
         }
         [HttpPut]
@@ -56,6 +59,7 @@ namespace MainRequestTrackerAPI.Controllers
                 return NotFound(nefe.Message);
             }
         }
+
         [Route("GetEmployeeByName")]
         [HttpPost]
         public async Task<ActionResult<Employee>> Arvind([FromBody] string name)

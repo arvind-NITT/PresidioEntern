@@ -3,7 +3,10 @@ using MainRequestTrackerAPI.Interfaces;
 using MainRequestTrackerAPI.Models;
 using MainRequestTrackerAPI.Repositories;
 using MainRequestTrackerAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MainRequestTrackerAPI
 {
@@ -19,15 +22,36 @@ namespace MainRequestTrackerAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            //Debug.WriteLine(builder.Configuration["TokenKey:JWT"]);
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey:JWT"]))
+                    };
 
+                });
+
+            #region contexts
             builder.Services.AddDbContext<RequestTrackerContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
                 );
+            #endregion
 
-             builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepository>();
+            #region repositories
+            builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepository>();
+            builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
+            #endregion
 
-             builder.Services.AddScoped<IEmployeeService, EmployeeBasicService>();
-
+            #region services
+            builder.Services.AddScoped<IEmployeeService, EmployeeBasicService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
+            #endregion
 
             var app = builder.Build();
 
@@ -37,7 +61,7 @@ namespace MainRequestTrackerAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
