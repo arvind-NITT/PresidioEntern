@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainRequestTrackerAPI", "MainRequestTrackerAPI\MainRequestTrackerAPI.csproj", "{8CF0BF79-E0D7-4BC4-B558-DEB1A8158BF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainRequestTrackerAPI", "MainRequestTrackerAPI\MainRequestTrackerAPI.csproj", "{8CF0BF79-E0D7-4BC4-B558-DEB1A8158BF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REquestTrackerUnitTest", "REquestTrackerUnitTest\REquestTrackerUnitTest.csproj", "{FC765552-A20D-473D-987B-721942D8AC6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8CF0BF79-E0D7-4BC4-B558-DEB1A8158BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CF0BF79-E0D7-4BC4-B558-DEB1A8158BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CF0BF79-E0D7-4BC4-B558-DEB1A8158BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC765552-A20D-473D-987B-721942D8AC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC765552-A20D-473D-987B-721942D8AC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC765552-A20D-473D-987B-721942D8AC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC765552-A20D-473D-987B-721942D8AC6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f5f5f5; display: flex; justify-content: center; padding: 20px;">
+    <div style="background-color: white; padding: 20px; border: 1px solid #ddd; width: 800px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <!-- Header Section -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 2px solid red;">
+            <img src="logo.png" alt="University Logo" style="width: 80px;">
+            <div style="text-align: center;">
+                <h1 style="margin: 0;">CAREER UNIVERSITY</h1>
+                <h2 style="margin: 0;">STATEMENT OF MARKS</h2>
+                <h3 style="margin: 0;">Diploma Examination in Engineering</h3>
+            </div>
+            <img src="profile.jpg" alt="Profile Picture" style="width: 60px; height: 60px; border-radius: 50%;">
+        </div>
+
+
+        <div style="display: flex; justify-content: space-between; padding-top: 10px;">
+            <div>
+                <p>Name: <strong>Arvind Mali</strong></p>
+                <p>Mother's Name: <strong>Nandu Mali</strong></p>
+                <p>Branch: <strong>Master Of Computer Applications</strong></p>
+            </div>
+            <div style="text-align: right;">
+                <p>Serial No: <strong>1234567890</strong></p>
+                <p>Seat No: <strong>123456</strong></p>
+                <p>Center: <strong>NIT Trichy</strong></p>
+            </div>
+        </div>
+
+
+        <title>Marks Table</title>
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+        </head>
+        <body>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Max Marks</th>
+                        <th>Min Marks</th>
+                        <th>Marks Obtained</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mathematics</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>85</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Science</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>90</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>English</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>75</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Social Studies</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>80</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Hindi</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>70</td>
+                        <td>Pass</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Max Marks</th>
+                        <th>Min Marks</th>
+                        <th>Marks Obtained</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Physics</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>85</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Chemistry</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>90</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Biology</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>80</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>Mathematics</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>95</td>
+                        <td>Pass</td>
+                    </tr>
+                    <tr>
+                        <td>English</td>
+                        <td>100</td>
+                        <td>35</td>
+                        <td>88</td>
+                        <td>Pass</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </body>
+</html>
+<!-- Result Section -->
+<div style="display: flex; justify-content: space-between; margin-top: 20px;">
+    <div>
+        <p><strong>Total:</strong> 175/200</p>
+        <p><strong>Percentage:</strong> 87.5%</p>
+        <p><strong>Result:</strong> Pass</p>
+    </div>
+    <div style="text-align: right;">
+        <p><strong>Date:</strong> 01 June 2024</p>
+        <p><strong>Controller of Examinations</strong></p>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div style="text-align: center; margin-top: 20px;">
+    <p style="margin: 0;">Contact: +1234567890 | email@example.com</p>
+    <p style="margin: 0;">www.sdfghjfgjskdg.com</p>
+</div>
+    </div>
+</body>
+</html>

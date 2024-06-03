@@ -21,6 +21,7 @@ namespace MainRequestTrackerAPI
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+          //  builder.Services.AddLogging(l => l.AddLog4Net());
             builder.Services.AddSwaggerGen();
             //Debug.WriteLine(builder.Configuration["TokenKey:JWT"]);
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -62,7 +63,7 @@ namespace MainRequestTrackerAPI
                 app.UseSwaggerUI();
             }
             app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthorization(); 
 
 
             app.MapControllers();
