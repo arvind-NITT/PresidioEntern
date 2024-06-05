@@ -1,0 +1,19 @@
+.Main{
+      height: 50vh;
+      width: 100vw;
+}
+.EmployeeMain{
+    display: flex;
+    flex-direction: ro;
+    height: 50vh;
+}
+
+.Card{
+    position: relative;
+    height: 80%;
+    width: 200px;
+    float: left;
+}
+iframe{
+    width: 100%;
+}
