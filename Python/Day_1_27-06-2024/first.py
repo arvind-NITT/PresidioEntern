@@ -1,0 +1,17 @@
+print("hello world")
+
+if 5 > 2:
+    print("ksdhgfdjksladbjvhf")
+else:
+    print("nbxvbcv,mbgvjhvnvbhmv")
+
+
+if 5 > 2:
+    print("Five is greater than two!")
+
+
+x = 5
+y = "Hello, World!"
+        
+        
+    
