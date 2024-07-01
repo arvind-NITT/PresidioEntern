@@ -2,6 +2,7 @@ import datetime
 import re
 import pandas as pd
 from fpdf import FPDF
+import os
 
 def validate_name(name):
     return bool(re.match(r'^[A-Za-z\s]+$', name))
@@ -49,21 +50,43 @@ def collect_employee_details():
     return {"Name": name, "DOB": dob, "Phone": phone, "Email": email, "Age": age}
 
 def save_to_text(employee_details):
-    with open('employee_details.txt', 'w') as file:
+    with open('employee_details.txt', 'a') as file:
         for key, value in employee_details.items():
             file.write(f"{key}: {value}\n")
+        file.write("\n")  # Add a newline for separation between entries
 
 def save_to_excel(employee_details):
-    df = pd.DataFrame([employee_details])
-    df.to_excel('employee_details.xlsx', index=False)
+    try:
+        # Try to read the existing file
+        df_existing = pd.read_excel('employee_details.xlsx')
+        # Convert new details to DataFrame
+        df_new = pd.DataFrame([employee_details])
+        # Append the new data to the existing data
+        df_combined = pd.concat([df_existing, df_new], ignore_index=True)
+    except FileNotFoundError:
+        # If the file does not exist, create it with the new data
+        df_combined = pd.DataFrame([employee_details])
+    
+    # Write the combined data back to the file
+    df_combined.to_excel('employee_details.xlsx', index=False)
 
 def save_to_pdf(employee_details):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size = 12)
+    
+    try:
+        with open('employee_details.txt', 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                pdf.cell(200, 10, txt = line.strip(), ln = True)
+    except FileNotFoundError:
+        pass
+
     for key, value in employee_details.items():
         pdf.cell(200, 10, txt = f"{key}: {value}", ln = True)
     pdf.output("employee_details.pdf")
+
 
 def main():
     employee_details = collect_employee_details()
