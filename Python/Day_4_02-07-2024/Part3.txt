@@ -1,0 +1,220 @@
+----------------------------------------------------------------------------------------------------------------------
+q1
+
+----------------------------------------------------------------------------------------------------------------------
+
+ def lengthOfLongestSubstring(self, s: str) -> int:
+
+        if len(s)==0:
+            return 0
+
+        i=0
+        j=0
+        seen=set()
+        max_count=0
+
+        while j<len(s):
+            if s[j] not in seen:
+                seen.add(s[j])
+                j+=1
+                max_count=max(max_count,j-i)
+            else:
+                while s[i]!=s[j]:
+                    seen.remove(s[i])
+                    i+=1
+                seen.remove(s[i])
+                i+=1
+
+
+        return max_count     
+
+----------------------------------------------------------------------------------------------------------------------
+q2
+
+----------------------------------------------------------------------------------------------------------------------
+
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1:
+            return s
+
+        rows = [""] * numRows
+        
+        add = 0
+        inc = 1
+        for i in s:
+            rows[add] += i
+            if add == 0:
+                inc = 1
+            elif add == numRows - 1:
+                inc = -1
+
+            add += inc
+            
+        return "".join(rows)
+
+----------------------------------------------------------------------------------------------------------------------
+q3
+
+----------------------------------------------------------------------------------------------------------------------
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        return self.KSumClosest(nums, 3, target)
+
+    def KSumClosest(self, nums: List[int], k: int, target: int) -> int:
+        N = len(nums)
+        if N == k:
+            return sum(nums[:k])
+
+        current = sum(nums[:k])
+        if current >= target:
+            return current
+
+        current = sum(nums[-k:])
+        if current <= target:
+            return current
+        
+        if k == 1:
+            return min([(x, abs(target - x)) for x in nums], key = lambda x: x[1])[0]
+
+        closest = sum(nums[:k])
+        for i, x in enumerate(nums[:-k+1]):
+            if i>0 and x == nums[i-1]:
+                continue
+            current = self.KSumClosest(nums[i+1:], k-1, target - x) + x
+            if abs(target - current) < abs(target - closest):
+                if current == target:
+                    return target
+                else:
+                    closest = current
+
+        return closest
+----------------------------------------------------------------------------------------------------------------------
+q4
+
+----------------------------------------------------------------------------------------------------------------------
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        
+        pair = "()"
+        arr = []
+        arr.append(pair)
+
+        for _ in range(2,n+1):
+            temp = set()
+
+            while arr:
+                val = arr.pop()
+                for i in range(len(val)):
+                    s = val[:i] + pair + val[i:]
+                    temp.add(s)
+
+            for t in temp:
+                arr.append(t)
+
+        return arr
+
+
+
+
+
+        
+
+----------------------------------------------------------------------------------------------------------------------
+q5
+
+----------------------------------------------------------------------------------------------------------------------
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        return str(int(num1) * int(num2))
+----------------------------------------------------------------------------------------------------------------------
+q6
+
+----------------------------------------------------------------------------------------------------------------------
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        return [list(group) for _, group in groupby(sorted(strs, key=lambda x: sorted(x)), key=lambda x: sorted(x))]
+----------------------------------------------------------------------------------------------------------------------
+q7
+
+----------------------------------------------------------------------------------------------------------------------
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        return str(int(num1) * int(num2))
+----------------------------------------------------------------------------------------------------------------------
+q8
+
+----------------------------------------------------------------------------------------------------------------------
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        if len(nums) == 1:
+            return True
+
+
+        index = len(nums)-1
+        pointer = index - 1
+
+        while pointer >= 0:
+            if((nums[pointer] + pointer) >= index):
+                index = pointer
+            pointer -= 1
+
+        if index <= 0:
+            return True
+
+        return False
+----------------------------------------------------------------------------------------------------------------------
+q9
+
+----------------------------------------------------------------------------------------------------------------------
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        
+        prevRow = [1 for _ in range(n)]
+        for row in range(1, m):
+            currRow =  [1 for _ in range(n)]
+            for col in range(1, n):
+                currRow[col] = currRow[col - 1] + prevRow[col]
+            prevRow = currRow
+
+        return prevRow[-1]
+----------------------------------------------------------------------------------------------------------------------
+q10
+
+----------------------------------------------------------------------------------------------------------------------
+
+class Solution:
+    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
+        result = []
+        cur_line = []
+        cur_len = 0
+        
+        for word in words:
+            if cur_len + len(word) + len(cur_line) > maxWidth:
+                # Justify the current line
+                num_spaces = maxWidth - cur_len
+                if len(cur_line) == 1:
+                    result.append(cur_line[0] + ' ' * num_spaces)
+                else:
+                    space_between_words = num_spaces // (len(cur_line) - 1)
+                    extra_spaces = num_spaces % (len(cur_line) - 1)
+                    justified_line = ''
+                    for i in range(len(cur_line) - 1):
+                        justified_line += cur_line[i] + ' ' * (space_between_words + (i < extra_spaces))
+                    justified_line += cur_line[-1]
+                    result.append(justified_line)
+                
+                # Reset current line
+                cur_line = []
+                cur_len = 0
+                
+            cur_line.append(word)
+            cur_len += len(word)
+        
+        # Last line: left justify
+        last_line = ' '.join(cur_line)
+        last_line += ' ' * (maxWidth - len(last_line))
+        result.append(last_line)
+        
+        return result
