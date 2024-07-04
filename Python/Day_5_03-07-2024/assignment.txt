@@ -1,0 +1,131 @@
+--------------------------------------------------------------------------------------------------------------------------
+q1
+--------------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
+    students = []
+    scores = []
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        students.append((name, score))
+        scores.append(score)
+    second_lowest_score = min(a for a in scores if a > min(scores))
+    students.sort(key=lambda k: k[0])    
+    for st in students:
+        if st[1] == second_lowest_score:
+            print(st[0])
+
+--------------------------------------------------------------------------------------------------------------------------
+q2
+--------------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
+    n = int(input())
+    student_marks = {}
+    for _ in range(n):
+        name, *line = input().split()
+        scores = list(map(float, line))
+        student_marks[name] = scores
+    query_name = input()
+    scores = student_marks.get(query_name)
+    average_score =(sum(scores) / len(scores))
+    print(f"{average_score:.2f}")
+--------------------------------------------------------------------------------------------------------------------------
+q3
+--------------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
+    N = int(input())
+    the_list = []
+    for _ in range(N):
+        command, *parameters = input().split()
+        if command == 'print':
+            print(the_list)
+        else:
+            getattr(the_list, command)(*[int(p) for p in parameters])
+--------------------------------------------------------------------------------------------------------------------------
+q4
+--------------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
+    n = int(input())
+    integer_list = map(int, input().split())
+    print(hash(tuple(integer_list)))
+--------------------------------------------------------------------------------------------------------------------------
+q5
+--------------------------------------------------------------------------------------------------------------------------
+def swap_case(s):
+    str  = s.swapcase()
+    return str
+    
+if __name__ == '__main__':
+    s = input()
+    result = swap_case(s)
+    print(result)
+--------------------------------------------------------------------------------------------------------------------------
+q6
+--------------------------------------------------------------------------------------------------------------------------
+def split_and_join(line):
+    x = line.split()
+    y = "-".join(x)
+    return y
+
+if __name__ == '__main__':
+    line = input()
+    result = split_and_join(line)
+    print(result)
+--------------------------------------------------------------------------------------------------------------------------
+q7
+--------------------------------------------------------------------------------------------------------------------------
+def print_full_name(first, last): # Write your code here print(f"Hello {first} {last}! You just delved into python.")
+--------------------------------------------------------------------------------------------------------------------------
+q8
+--------------------------------------------------------------------------------------------------------------------------
+def mutate_string(string, position, character):
+    l = list(string)
+    l[position] = character
+    string = ''.join(l)
+    return string
+    #OR
+    n = len(string)
+    listq = list(string)
+    for i in range(n):
+        if i == position:
+            listq[i] = character
+            return ''.join(listq)
+
+if __name__ == '__main__':
+    s = input()
+    i, c = input().split()
+    s_new = mutate_string(s, int(i), c)
+    print(s_new)
+--------------------------------------------------------------------------------------------------------------------------
+q9
+--------------------------------------------------------------------------------------------------------------------------
+def count_substring(string, sub_string):
+    length = len(string)
+    count = 0
+    for i in range(length-1):
+        for j in range(length-i-1):
+            if string.startswith(sub_string):
+                count += 1
+                string = string[(i+1):]
+            elif not string.startswith(sub_string):
+                string = string[(i+1):]
+    return count
+
+if __name__ == '__main__':
+    string = input().strip()
+    sub_string = input().strip()
+    
+    count = count_substring(string, sub_string)
+    print(count)
+--------------------------------------------------------------------------------------------------------------------------
+q10
+--------------------------------------------------------------------------------------------------------------------------
+if __name__ == '__main__':
+    s = input()
+    check = [any(c.isalnum() for c in s),
+    any(c.isalpha() for c in s),
+    any(c.isdigit() for c in s),
+    any(c.islower() for c in s),
+    any(c.isupper() for c in s)]
+    
+    print(*check, sep="\n")
