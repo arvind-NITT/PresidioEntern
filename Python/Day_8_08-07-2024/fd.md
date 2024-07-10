@@ -64,7 +64,7 @@ public class FDAccount
 | + CreateFDAccountAsync(accountId: int, depositAmount: decimal, interestRate: double, duration: int): Task<FDAccountResponse> |
 | + GetFDAccountDetailsAsync(fdAccountId: int): Task<FDAccountResponse> |
 | + WithdrawFromFDAccountAsync(fdAccountId: int): Task<FDAccountResponse> |
-| + GetThePenaltyAndWithdrawFromFDAccountAsync(fdAccountId: int): Task<FDAccountResponse> |
+| + PreMatureWithdrawFromFDAccount(fdAccountId: int): Task<FDAccountResponse> |
  + RenewFDAccountAsync(fdAccountId: int, newDuration: int): Task<FDAccountResponse> |
 +--------------------------+
 
@@ -74,7 +74,7 @@ public class FDAccount
 | + CreateFDAccountAsync(accountId: int, depositAmount: decimal, interestRate: double, duration: int): Task<FDAccountResponse> |
 | + GetFDAccountDetailsAsync(fdAccountId: int): Task<FDAccountResponse> |
 | + WithdrawFromFDAccountAsync(fdAccountId: int): Task<FDAccountResponse> |
-| + GetThePenaltyAndWithdrawFromFDAccountAsync(fdAccountId: int): Task<FDAccountResponse> |
+| + PreMatureWithdrawFromFDAccount(fdAccountId: int): Task<FDAccountResponse> |
  + RenewFDAccountAsync(fdAccountId: int, newDuration: int): Task<FDAccountResponse> |
 +--------------------------+
 
@@ -106,4 +106,5 @@ public class FDAccount
 | + CreateFDAccount(request: CreateFDAccountRequest): Task<IActionResult> |
 | + GetFDAccountDetails(fdAccountId: int): Task<IActionResult> |
 | + WithdrawFromFDAccount(fdAccountId: int): Task<IActionResult> |
+| + PreMatureWithdrawFromFDAccount(fdAccountId: int): Task<IActionResult> |
 +--------------------------+
