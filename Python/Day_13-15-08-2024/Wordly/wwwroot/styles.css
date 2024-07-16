@@ -1,0 +1,55 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.word-grid {
+    display: grid;
+    grid-template-rows: repeat(7, 50px);
+    grid-template-columns: repeat(5, 50px);
+    gap: 10px;
+    margin: 20px 0;
+}
+ .word-grid .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+        font-size: 24px;
+        cursor: pointer;
+        background-color: #ccc;
+    }
+
+        .word-grid .cell.correct {
+            background-color: green;
+            color: white;
+        }
+
+        .word-grid .cell.incorrect {
+            background-color: red;
+            color: white;
+        }
+
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    margin-top: 20px;
+}
+
+    .keyboard .key {
+        padding: 10px;
+        border: 1px solid #000;
+        text-align: center;
+        cursor: pointer;
+        background-color: #ddd;
+        font-size: 18px;
+    }
+
+        .keyboard .key:hover {
+            background-color: #bbb;
+        }
