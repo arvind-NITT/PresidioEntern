@@ -1,0 +1,1 @@
+az deployment group create --name azuredeployment --resource-group rg_Arvind_07 --template-file azuretemplateone.json --parameters storageName=azurestoreg319102 vmName=ArvindVm adminUsername=arvindmali adminPassword=************** sqlServerName=arvindsqlserver sqlAdminUsername=sqladmin sqlAdminPassword=*************** sqlDatabaseName=arvinddb keyVaultName=arvindvault
