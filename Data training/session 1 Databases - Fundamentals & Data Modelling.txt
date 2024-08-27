@@ -1,0 +1,103 @@
+-- Step 1: Create the Database
+CREATE DATABASE UniversitySyncDatabase;
+GO
+
+USE UniversitySyncDatabase;
+GO
+
+-- Step 2: Create Source Table with Timestamp
+CREATE TABLE SourceCourseTable (
+    CourseId INT PRIMARY KEY IDENTITY(1,1),
+    CourseName NVARCHAR(255),
+    Department NVARCHAR(100),
+    Credits INT,
+    IsArchived BIT DEFAULT 0, -- Flag for soft deletion
+    Timestamp DATETIME DEFAULT GETDATE() -- Timestamp for record creation or update
+);
+GO
+
+-- Step 3: Create Target Table with Timestamp
+CREATE TABLE TargetCourseTable (
+    TargetCourseId INT PRIMARY KEY IDENTITY(1,1),
+    CourseId INT, -- References SourceCourseTable
+    CourseName NVARCHAR(255),
+    Department NVARCHAR(100),
+    Credits INT,
+    Timestamp DATETIME -- Timestamp for record creation or update
+);
+GO
+
+-- Step 4: Create ETL Procedure for Synchronizing Data
+CREATE PROCEDURE ETL_SyncCourseData
+AS
+BEGIN
+    -- Step 1: Extract - Get all records from SourceCourseTable
+    DECLARE @SourceTable TABLE (
+        CourseId INT,
+        CourseName NVARCHAR(255),
+        Department NVARCHAR(100),
+        Credits INT,
+        IsArchived BIT,
+        Timestamp DATETIME
+    );
+
+    -- Extract data from SourceCourseTable
+    INSERT INTO @SourceTable
+    SELECT CourseId, CourseName, Department, Credits, IsArchived, Timestamp
+    FROM SourceCourseTable;
+
+    -- Step 2: Transform - Handle Soft Deletes
+    -- Remove soft-deleted records from the TargetCourseTable
+    DELETE FROM TargetCourseTable
+    WHERE CourseId IN (SELECT CourseId FROM @SourceTable WHERE IsArchived = 1);
+
+    -- Step 3: Load - Insert new records into TargetCourseTable
+    INSERT INTO TargetCourseTable (CourseId, CourseName, Department, Credits, Timestamp)
+    SELECT CourseId, CourseName, Department, Credits, Timestamp
+    FROM @SourceTable
+    WHERE CourseId NOT IN (SELECT CourseId FROM TargetCourseTable)
+    AND IsArchived = 0;
+
+    -- Update existing records in TargetCourseTable
+    UPDATE TargetCourseTable
+    SET CourseName = s.CourseName,
+        Department = s.Department,
+        Credits = s.Credits,
+        Timestamp = s.Timestamp
+    FROM TargetCourseTable t
+    JOIN @SourceTable s ON t.CourseId = s.CourseId
+    WHERE s.IsArchived = 0;
+END;
+GO
+
+-- Step 5: Insert Records into SourceCourseTable
+INSERT INTO SourceCourseTable (CourseName, Department, Credits)
+VALUES 
+    ('Introduction to Computer Science', 'Computer Science', 4),
+    ('Advanced Mathematics', 'Mathematics', 3),
+    ('Physics for Engineers', 'Physics', 4),
+    ('Chemistry 101', 'Chemistry', 3),
+    ('World History', 'History', 2);
+GO
+
+-- Step 6: Execute the ETL Procedure to Synchronize Data
+EXEC ETL_SyncCourseData;
+GO
+
+-- Perform a soft delete by updating the IsArchived flag
+UPDATE SourceCourseTable
+SET IsArchived = 1
+WHERE CourseName = 'Introduction to Computer Science';
+
+-- Re-run the ETL procedure to synchronize data after the soft delete
+EXEC ETL_SyncCourseData;
+
+-- Check the results in both tables after synchronization
+SELECT * FROM SourceCourseTable;
+SELECT * FROM TargetCourseTable;
+
+-- Query to display the latest 3 records based on the Timestamp
+SELECT TOP 3 *
+FROM TargetCourseTable
+ORDER BY Timestamp DESC;
+GO
